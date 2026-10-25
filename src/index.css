@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Solvador brand — Paper background, Ink text, a single Clay accent used
+   sparingly (see "Solvador Brand" design system). Helvetica Neue for the
+   wordmark + interface; JetBrains Mono for labels, code, and chain IDs only.
+   Single fixed theme (no light/dark toggle).
+   ───────────────────────────────────────────────────────────────────────── */
+@theme inline {
+    /* Helvetica Neue for everything human-readable, JetBrains Mono for technical bits. */
+    --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-display: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --font-heading: var(--font-display);
+
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    --background: #F4F1EB;          /* Paper */
+    --foreground: #1A1611;          /* Ink */
+
+    --card: #FBF9F5;               /* card surface — a hair above Paper */
+    --card-foreground: #1A1611;
+    --popover: #14110C;            /* deep ink — code card, menus / dialogs */
+    --popover-foreground: #F4F1EB;
+
+    --primary: #1A1611;            /* Ink (dark pill button) */
+    --primary-foreground: #F4F1EB;
+
+    --secondary: #1A1611;         /* Ink pill button (Login CTAs, prominent on Paper) */
+    --secondary-foreground: #F4F1EB;
+
+    --muted: #EAE4D9;             /* Sand */
+    --muted-foreground: #8B8378;  /* Stone — legible on both Paper and the dark card */
+
+    --accent: #C0592E;            /* Clay — the single accent (status dot, code strings) */
+    --accent-foreground: #F4F1EB;
+
+    --destructive: #C0392B;       /* failed badge */
+
+    --border: #E1DBD0;            /* warm hairline */
+    --input: #E1DBD0;
+    --ring: #C0592E;              /* clay focus ring */
+
+    --radius: 1rem;               /* cards ~1rem; pills use rounded-full */
+
+    /* unused by this app but referenced by some shadcn primitives */
+    --chart-1: #C0592E;
+    --chart-2: #1A1611;
+    --chart-3: #8B8378;
+    --chart-4: #D9A441;
+    --chart-5: #4F7C4A;
+    --sidebar: #14110C;
+    --sidebar-foreground: #F4F1EB;
+    --sidebar-primary: #C0592E;
+    --sidebar-primary-foreground: #F4F1EB;
+    --sidebar-accent: #2A251E;
+    --sidebar-accent-foreground: #F4F1EB;
+    --sidebar-border: #E1DBD0;
+    --sidebar-ring: #C0592E;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Dashboard — a light, warm product theme (scoped). Overriding the token
+   variables on this wrapper cascades to every shadcn component inside it.
+   ───────────────────────────────────────────────────────────────────────── */
+.dashboard-theme {
+    --background: #F4F1EB;          /* Paper — app canvas */
+    --foreground: #1A1611;          /* Ink */
+
+    --card: #FBF9F5;               /* card surface */
+    --card-foreground: #1A1611;
+    --popover: #FBF9F5;
+    --popover-foreground: #1A1611;
+
+    --primary: #1A1611;             /* Ink — primary buttons, mark, active text */
+    --primary-foreground: #F4F1EB;
+
+    --secondary: #EAE4D9;           /* Sand — quiet / disabled buttons */
+    --secondary-foreground: #1A1611;
+
+    --muted: #EAE4D9;              /* Sand */
+    --muted-foreground: #8B8378;    /* Stone */
+
+    --accent: #F1E3D9;              /* Clay Tint — hover / selected surface */
+    --accent-foreground: #1A1611;
+
+    --destructive: #C0392B;
+
+    --border: #E1DBD0;              /* warm hairline */
+    --input: #E1DBD0;
+    --ring: #C0592E;                /* clay focus ring */
+
+    --radius: 0.7rem;               /* tighter than the brand pages */
+
+    --chart-1: #C0592E;             /* Clay */
+    --chart-2: #1A1611;             /* Ink */
+    --chart-3: #8B8378;             /* Stone */
+    --chart-4: #D9A441;             /* amber */
+    --chart-5: #4F7C4A;             /* green */
+
+    --sidebar: #FBF9F5;
+    --sidebar-foreground: #1A1611;
+    --sidebar-primary: #1A1611;
+    --sidebar-primary-foreground: #F4F1EB;
+    --sidebar-accent: #F1E3D9;      /* Clay Tint — active / hover nav */
+    --sidebar-accent-foreground: #1A1611;
+    --sidebar-border: #E1DBD0;
+    --sidebar-ring: #C0592E;
+}
+
+/* Keep shadcn buttons as pills inside the dashboard, matching the rest of the
+   app. Target the `group/button` class (on every Button) rather than
+   data-slot=button — DialogTrigger asChild overwrites data-slot, so a data-slot
+   selector misses dialog-triggered buttons (e.g. "Create key"). Custom buttons
+   (range toggle, nav) don't carry this class, so they keep their own radius. */
+.dashboard-theme [class~="group/button"] {
+  border-radius: 9999px !important;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: #C0592E;            /* Clay */
+    color: #F4F1EB;                 /* Paper */
+  }
+  /* App-wide: hide scrollbars (scrolling still works via wheel / touch / keys). */
+  * {
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;       /* legacy Edge */
+  }
+  *::-webkit-scrollbar {
+    display: none;                  /* WebKit (Chrome / Safari) */
+  }
+  html {
+    @apply font-sans;
+  }
+  /* Tailwind v4 preflight leaves buttons on the default arrow cursor; restore the
+     pointer for anything clickable (disabled stays default). */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Slow spin for the landing radial graphic (referenced as animation:spin_…). */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

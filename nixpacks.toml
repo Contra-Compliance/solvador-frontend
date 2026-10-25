@@ -1,0 +1,10 @@
+# Use `npm install` instead of the default `npm ci` for the install phase.
+#
+# Why: the lockfile is generated on macOS, but the build runs on Linux. npm's
+# cross-platform optional deps (e.g. @napi-rs/wasm-runtime → @emnapi/core, pulled
+# in by Vite/Rolldown, @tailwindcss/oxide and lightningcss) don't always resolve
+# to the same versions across platforms, so `npm ci`'s strict lockfile-consistency
+# check fails on Linux ("Missing @emnapi/core@… from lock file") even though it
+# passes locally. `npm install` reconciles the lockfile and installs successfully.
+[phases.install]
+cmds = ["npm install"]
